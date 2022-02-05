@@ -1,21 +1,20 @@
 package ru.skypro.course1.coursework;
 
+import java.util.Objects;
+
 public class Employee {
     private String name;
-    private String surname;
-    private String lastname;
-    private String department;
+    private int department;
     private double salary;
-    private static int id = 0;
+    private int id;
+    private static int counter = 0;
 
 
-    public Employee(String name, String surname, String lastname, String department, double salary) {
+    public Employee(String name, int department, double salary) {
         this.name = name;
-        this.surname = surname;
-        this.lastname = lastname;
         this.department = department;
         this.salary = salary;
-        id++;
+        id = counter++;
     }
 
 
@@ -25,15 +24,7 @@ public class Employee {
         return name;
     }
 
-    public String getSurnameName() {
-        return surname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getDepartment() {
+    public int getDepartment() {
         return department;
     }
 
@@ -45,7 +36,7 @@ public class Employee {
         return id;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(int department) {
         this.department = department;
     }
 
@@ -54,13 +45,26 @@ public class Employee {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return department == employee.department && Double.compare(employee.salary, salary) == 0 && id == employee.id && Objects.equals(name, employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, department, salary, id);
+    }
+
+    @Override
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", department='" + department + '\'' +
+                ", department=" + department +
                 ", salary=" + salary +
+                ", id=" + id +
                 '}';
     }
 }
+
