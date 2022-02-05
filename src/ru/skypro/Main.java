@@ -41,15 +41,17 @@ public class Main {
         return employee;
     }
 
-    public static void printEmployeesAverageSalary() {
+    public static int printEmployeesAverageSalary() {
         int sum = 0;
         for (int i = 0; i < employees.length; i++) {
             employees[i].getSalary();
             sum += employees[i].getSalary();
         }
         sum /= employees.length;
-        System.out.println("Средняя " + sum + "руб");
+        return sum;
+
     }
+
 
     public static Employee findEmployeeMinSalary() {
         Employee employee1 = employees[0];
@@ -76,9 +78,9 @@ public class Main {
         employees [9]= new Employee("Анна", 10, 190000);
         printEmployees();
         printEmployeesSalary();
-        findEmployeeMaxSalary();
-        findEmployeeMinSalary();
-        printEmployeesAverageSalary();
+        System.out.println(findEmployeeMaxSalary());
+        System.out.println(findEmployeeMinSalary());
+        System.out.println(printEmployeesAverageSalary());
     }
 
 }
